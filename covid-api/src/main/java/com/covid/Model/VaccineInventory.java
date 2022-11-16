@@ -1,41 +1,35 @@
 package com.covid.Model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-@Data
 @Entity
-public class User {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+public class VaccineInventory {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+	private Integer inventoryId;
 	
-	String mobileNo;
+	private String vaccineName;
+	private Integer quantity;
+	private String State;
 	
-	String password;
-	
-	String role;
-	
-	@Embedded
-	Member member;
-	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccineInventory")
+	List<Center> centers = new ArrayList<>();
 }

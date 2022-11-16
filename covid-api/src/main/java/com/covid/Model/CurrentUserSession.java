@@ -19,7 +19,8 @@ import lombok.NoArgsConstructor;
 public class CurrentUserSession {
 	
 	@Id
-	Integer UserId;
-	String uuid;
-	LocalDateTime timeStamp;
+	private Integer UserId;
+	private String uuid;
+	private LocalDateTime timeStamp;
+	private String Type;
 }
