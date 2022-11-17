@@ -3,8 +3,6 @@
 
 This web application will facilitate the citizen with an option to register and schedule the vaccination session online in Centers . The Citizen self-registration module will ensure fool-proof identification of deserving candidates for receiving the vaccines.
 
-# 💡 UML Vaccination
-
 
 
 # Tech Stack
