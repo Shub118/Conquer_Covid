@@ -26,7 +26,7 @@ public class AdminServiceImpl implements AdminService{
 		if(curr == null) {
 			throw new UserException("Please login first");
 		}
-		if(curr.getType() != "ADMIN") {
+		if(curr.getType().equals("ADMIN")) {
 			throw new UserException("Please login with admin id");
 		}
 		user.setRole("ADMIN");
