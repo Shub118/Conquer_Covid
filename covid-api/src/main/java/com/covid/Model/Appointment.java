@@ -1,43 +1,45 @@
 package com.covid.Model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Data
-@Entity
-public class User {
-	
+public class Appointment {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+	private Integer aid;
 	
-	String mobileNo;
+	private LocalDate dateOfBooking;
 	
-	String password;
+	private boolean bookingStatus;
 	
-	String role;
+	private SLOT slot;
 	
-	@Embedded
-	Member member;
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	User user;
 	
-	@OneToOne
-	Appointment appointment;
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	Center center;
 }

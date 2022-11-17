@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.covid.Exception.CenterException;
 import com.covid.Exception.UserException;
+import com.covid.Exception.VaccineInventoryException;
+import com.covid.Model.Appointment;
 import com.covid.Model.CurrentUserSession;
 import com.covid.Model.LoginDTO;
 import com.covid.Model.User;
@@ -35,7 +38,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<CurrentUserSession> RegisterUser(@RequestBody LoginDTO  loginData) throws UserException{
+	public ResponseEntity<CurrentUserSession> loginUser(@RequestBody LoginDTO  loginData) throws UserException{
 		
 		CurrentUserSession currentUser = uService.login(loginData);
 	
@@ -54,5 +57,12 @@ public class UserController {
 		User updated = uService.updateUser(userNewData, key);
 		return new ResponseEntity<>(updated,HttpStatus.ACCEPTED);
 
+	}
+	
+	@GetMapping("/appointment")
+	public ResponseEntity<Appointment> getAppointment(@RequestParam String key) throws UserException, CenterException, VaccineInventoryException {
+		Appointment app = uService.getAppointment(key);
+		
+		return new ResponseEntity<>(app,HttpStatus.OK);
 	}
 }

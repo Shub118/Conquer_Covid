@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -28,8 +29,9 @@ public class VaccineInventory {
 	
 	private String vaccineName;
 	private Integer quantity;
-	private String State;
+	private String state;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vaccineInventory")
+//	@JoinColumn(name = "center_id")
 	List<Center> centers = new ArrayList<>();
 }

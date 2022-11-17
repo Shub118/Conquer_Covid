@@ -8,4 +8,5 @@ import com.covid.Model.User;
 @Repository
 public interface UserRepo  extends JpaRepository<User, Integer>{
 	public User findByMobileNo(String mobl);
+
 }
